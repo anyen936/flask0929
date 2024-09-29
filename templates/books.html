@@ -7,7 +7,7 @@
     <title>書店首頁</title>
     <style>
         body {
-            background-color: antiquewhite;
+            background-color: #fafafa;
             text-align: center;
         }
 
@@ -15,18 +15,16 @@
             background-color: rgb(7, 65, 4);
             padding: 12px;
             margin: 6px 0px;
-            color: wheat;
+            color: rgb(247, 244, 239);
 
         }
 
         .bookname {
-            font: size 20px;
+            font-size: 20px;
             font-weight: bold;
-            background-color: aliceblue;
+            background-color: rgb(229, 182, 38);
             width: 200px;
             margin: 0 auto;
-            border-radius: 12px;
-            height: 50px;
             border-radius: 12px;
             padding: 12px 0px;
         }
@@ -34,29 +32,32 @@
         .bookimage {
             width: 250px;
             border-radius: 12px;
-            border: 1px black;
+            border: 1px rgb(125, 86, 86);
             padding: 6px 0px;
+            margin: 0 auto;
+            display: block;
         }
     </style>
 </head>
 
 <body>
-    <h1>目前現有書籍</h1>
+    <h1>功能性書籍</h1>
     <!--{{books}}-->
-    {%for key in book %}
+    {%for key in books %}
 
     <div class="bookname">
-        {{books[key]["name"]}}
+        {{books[key].name}}
     </div>
 
-    <div class="price">{{books[key]["price"]}} </div>
-    <div class="bookimage" img src="{{books[key][image_url]}}" alt="">
-        <hr>
+    <div class="price">NT:{{books[key].price}} </div>
+    <img claa="bookimage" src="{{books[key].image_url}}" alt="">
+    <button>購買</button>
+    <hr>
 
 
 
 
-        {% endfor %}
+    {% endfor %}
 
 </body>
 
