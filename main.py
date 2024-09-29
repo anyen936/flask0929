@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from datetime import datetime
 
 app = Flask(__name__)
@@ -42,15 +42,22 @@ def books_b(id):
 
 @app.route("/book")
 def books_a():
-    return books
+    for key in books:
+        print(book[key])
+    return render_template("books.html", books=books)
 
 
 @app.route("/")  # 裝飾器綁定網址
 def index():
-
-    today = datetime.now()
-    print(today)
-    return f"<h1>hello Flask!{today}</h>"
+    try:
+        today = datetime.now()
+        print(today)
+        # return f"<h1>hello Flask!{today}</h1>"
+        name = "Molly"
+        return render_template("index.html", date=today, name=name)
+    except Exception as false:
+        print(false)
+    print("錯誤範例")
 
 
 app.run(debug=True)

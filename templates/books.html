@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>書店首頁</title>
+    <style>
+        body {
+            background-color: antiquewhite;
+            text-align: center;
+        }
+
+        .price {
+            background-color: rgb(7, 65, 4);
+            padding: 12px;
+            margin: 6px 0px;
+            color: wheat;
+
+        }
+
+        .bookname {
+            font: size 20px;
+            font-weight: bold;
+            background-color: aliceblue;
+            width: 200px;
+            margin: 0 auto;
+            border-radius: 12px;
+            height: 50px;
+            border-radius: 12px;
+            padding: 12px 0px;
+        }
+
+        .bookimage {
+            width: 250px;
+            border-radius: 12px;
+            border: 1px black;
+            padding: 6px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>目前現有書籍</h1>
+    <!--{{books}}-->
+    {%for key in book %}
+
+    <div class="bookname">
+        {{books[key]["name"]}}
+    </div>
+
+    <div class="price">{{books[key]["price"]}} </div>
+    <div class="bookimage" img src="{{books[key][image_url]}}" alt="">
+        <hr>
+
+
+
+
+        {% endfor %}
+
+</body>
+
+</html>
