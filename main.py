@@ -21,6 +21,11 @@ books = {
 }
 
 
+@app.route("/stocks")
+def get_stocks():
+    return render_template("stocks.html")
+
+
 @app.route("/bmi/name=<name>&height=<h>&weight=<w>")
 def get_bmi(name, h, w):
     try:
