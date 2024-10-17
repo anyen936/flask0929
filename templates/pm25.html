@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pm2.5 資訊</title>
+</head>
+
+<body>
+    <h1>全省PM2.5 資訊</h1>
+    <table>
+        <thead>
+            <tr>
+                {% for th in data["columns"]%}
+                {{th}}
+                {% endfor %}
+            </tr>
+
+        </thead>
+        <tbody>
+            {% for tr in data["values"]%}
+            <tr>
+                {{tr}}
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    {{data["columns"]}}
+    {{data["values"]}}
+</body>
+
+</html>

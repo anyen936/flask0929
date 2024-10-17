@@ -2,6 +2,19 @@ import requests
 from bs4 import BeautifulSoup
 
 
+def scrape_pm25():
+    url = "https://data.moenv.gov.tw/api/v2/aqx_p_02?api_key=e8dd42e6-9b8b-43f8-991e-b3dee723a52d&limit=1000&sort=datacreationdate%20desc&format=JSON"
+    try:
+        data = requests.get(url).json()["records"]
+        columns = list(data[0].keys())
+        values = [list(data.values()) for datas in data]
+
+        return columns, values
+    except Exception as e:
+        print(e)
+    return None, 484
+
+
 def scrape_stocks():
     url = "https://histock.tw/%E5%9C%8B%E9%9A%9B%E8%82%A1%E5%B8%82"
     resp = requests.get(url)
@@ -21,4 +34,5 @@ def scrape_stocks():
 
 
 if __name__ == "_main_":
-    print(scrape_stocks())
+    # print(scrape_stocks())
+    print(scrape_pm25())
