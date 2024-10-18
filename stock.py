@@ -3,11 +3,11 @@ from bs4 import BeautifulSoup
 
 
 def scrape_pm25():
-    url = "https://data.moenv.gov.tw/api/v2/aqx_p_02?api_key=e8dd42e6-9b8b-43f8-991e-b3dee723a52d&limit=1000&sort=datacreationdate%20desc&format=JSON"
+    URL = "https://data.moenv.gov.tw/api/v2/aqx_p_432?api_key=e8dd42e6-9b8b-43f8-991e-b3dee723a52d&limit=1000&sort=ImportDate%20desc&format=JSON"
     try:
-        data = requests.get(url).json()["records"]
-        columns = list(data[0].keys())
-        values = [list(data.values()) for datas in data]
+        datas = requests.get(URL).json()["records"]
+        columns = list(datas[0].keys())
+        values = [list(data.values()) for data in datas]
 
         return columns, values
     except Exception as e:

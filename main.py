@@ -1,6 +1,5 @@
 from flask import Flask, render_template
 from datetime import datetime
-
 from stock import scrape_pm25, scrape_stocks
 
 app = Flask(__name__)
@@ -26,7 +25,11 @@ books = {
 @app.route("/pm25")
 def get_pm25():
     columns, values = scrape_pm25()
-    datas = {"columns": columns, "values": values}
+    datas = {
+        "columns": columns,
+        "values": values,
+        "today": today.strftime(" %y/%m%d %H:%M:%S"),
+    }
     return render_template("pm25.html", data=datas)
 
 
