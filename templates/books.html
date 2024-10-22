@@ -44,18 +44,23 @@
     <h1>功能性書籍</h1>
     <!--{{books}}-->
     {%for key in books %}
-
+    
     <div class="bookname">
         {{books[key].name}}
     </div>
-
+    <h3>{{books[id].name}}</h3>
+    <h5>${{books[id].price}}</h5>
     <div class="price">NT:{{books[key].price}} </div>
     <img class="bookimage" src="{{books[key].image_url}}" alt="">
     <button>購買</button>
     <hr>
 
 
-
+    <script>
+        function showBook(name, price) {
+            alert(`${name} 價格為:$${price}`);
+        }
+    </script>
 
     {% endfor %}
 

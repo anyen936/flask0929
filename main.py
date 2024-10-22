@@ -1,6 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, jsonify, render_template
 from datetime import datetime
-from stock import scrape_pm25, scrape_stocks
+from scrape import scrape_pm25, scrape_stocks
 
 app = Flask(__name__)
 books = {
@@ -24,13 +24,30 @@ books = {
 
 @app.route("/pm25")
 def get_pm25():
+    today = datetime.now()
     columns, values = scrape_pm25()
-    datas = {
-        "columns": columns,
-        "values": values,
-        "today": today.strftime(" %y/%m%d %H:%M:%S"),
-    }
-    return render_template("pm25.html", data=datas)
+    data = {"columns": columns, "values": values, "today": today.strftime("%Y%m%d %H:%M:%S"),
+            }
+
+    return render_template("pm25.html", data=data)
+    # result = True
+    # return render_template("./pm25.html", columns=columns, values=values, result=result)
+
+
+@app.route("/sum/x=<x>&y=<y>")
+def sum(x, y):
+    total = int(x) + int(y)
+    return f"{x}+{y}={total}"
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"), 404
+
+
+@app.route("/books")
+def all_books():
+    return render_template("./books.html", books=books)
 
 
 @app.route("/stocks")
@@ -73,11 +90,11 @@ def books_b(id):
 # 設計查無此編號
 
 
-@app.route("/book")
-def books_a():
-    for key in books:
-        print(books[key])
-    return render_template("books.html", books=books)
+# @app.route("/book")
+# def books_a():
+#     # for key in books:
+#     #     print(books[key])
+#     return render_template("./books.html", books=books)
 
 
 @app.route("/")  # 裝飾器綁定網址
